@@ -36,7 +36,24 @@ let listener = app.listen(process.env.PORT, function () {
   let jsonObject= {};
 app.get("/api/:input", (req, res)=>{
   let input = req.params.input;
-  if(/\d{5,}/.test(input)){
+  if(/-|\.|/.test(input)){
+    jsonObject["unix"] = new Date(input).getTime();
+    console.log(input, new Date(input))
+     jsonObject["utc"] = new Date(input).toUTCString();
+    }else{
+    input = parseInt(input)  
+    jsonObject["unix"] = new Date(input).getTime();
+    jsonObject["utc"] = new Date(input).toUTCString(); 
+    }
+    
+    if(!jsonObject["unix"] || !jsonObject["utc"]){
+      res.json({error: "invalid Date"})
+    }else{
+
+      res.json(jsonObject);
+    }
+    /*
+    if(/\d{5,}/.test(input)){
     input = parseInt(input)  
     jsonObject["unix"] = new Date(input).getTime();
      jsonObject["utc"] = new Date(input).toUTCString();
@@ -50,7 +67,7 @@ app.get("/api/:input", (req, res)=>{
     }else{
 
       res.json(jsonObject);
-    }
+    }*/ 
 }) 
 app.get("/api", (req, res)=>{
   jsonObject["unix"]= new Date().getTime();
