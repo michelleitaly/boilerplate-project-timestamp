@@ -47,8 +47,10 @@ app.get("/api/:input", (req, res)=>{
     
     if(!jsonObject["unix"] || !jsonObject["utc"]){
       res.json({error: "invalid Date"})
+    }else{
+
+      res.json(jsonObject);
     }
-    res.json(jsonObject);
 }) 
 app.get("/api", (req, res)=>{
   jsonObject["unix"]= new Date().getTime();
