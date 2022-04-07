@@ -46,7 +46,7 @@ app.get("/api/:input", (req, res)=>{
     }
     
     if(!jsonObject["unix"] || !jsonObject["utc"]){
-      jsonObject ={error: "invalid Date"}
+      res.json({error: "invalid Date"})
     }
     res.json(jsonObject);
 }) 
