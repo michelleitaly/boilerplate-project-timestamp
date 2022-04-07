@@ -44,7 +44,7 @@ app.get("/api/:input", (req, res)=>{
     jsonObject["unix"] = new Date(input).getTime();
     jsonObject["utc"] = new Date(input).toUTCString(); 
     }
-    if(!jsonObject["unix"] || jsonObject["utc"]){
+    if(!jsonObject["unix"] || !jsonObject["utc"]){
       console.log({error: "invalid Date"})
     }
     res.json(jsonObject);
