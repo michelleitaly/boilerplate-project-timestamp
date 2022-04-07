@@ -33,7 +33,7 @@ let listener = app.listen(process.env.PORT, function () {
 let jsonObject = {};
 app.get("/api/:input", (req, res) => {
   let input = req.params.input;
-  if (/-|\./.test(input)) {
+  if (/-|\.|\D/.test(input)) {
     jsonObject["unix"] = new Date(input).getTime();
     console.log(1, jsonObject["unix"], jsonObject["utc"]);
 
