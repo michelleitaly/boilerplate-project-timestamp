@@ -36,7 +36,7 @@ let listener = app.listen(process.env.PORT, function () {
   let jsonObject= {};
 app.get("/api/:input", (req, res)=>{
   let input = req.params.input;
-  if(/\d{1,}/.test(input)){
+  if(/\d{5,}/.test(input)){
     input = parseInt(input)  
     jsonObject["unix"] = new Date(input).getTime();
      jsonObject["utc"] = new Date(input).toUTCString();
